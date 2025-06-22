@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VINh AUTOSERVICE — Everything app for your teams</title>
+  <meta name="theme-color" content="#0B0E14" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="img/icons/apple-touch-icon-180.png" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Share+Tech_Mono&subset=cyrillic&display=swap" rel="stylesheet" />
+  <style>
+    html { font-family: 'Inter', sans-serif; }
+    body { background: #0B0E14; }
+    .text-neon-cyan { color: #41fff6; text-shadow: 0 0 10px #19f3ff88; }
+    .neon-btn {
+      background: linear-gradient(90deg, #08fddb 0%, #0e9aff 100%);
+      box-shadow: 0 2px 24px 0 #00fff922;
+      color: #fff;
+    }
+    .neon-btn:hover {
+      filter: brightness(1.12);
+      transform: scale(1.04);
+      box-shadow: 0 4px 32px 0 #00f6ff77;
+    }
+    .mockup-glow { box-shadow: 0 10px 60px 0 #0ff6, 0 0 0 1px #05e4e4; }
+    .blur-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #48009c66 0%, transparent 100%);
+      filter: blur(24px);
+    }
+    html { scroll-behavior: smooth; }
+    /* Booking Form Styles */
+    #online-booking {
+      background: rgba(0, 0, 20, 0.72);
+      border-radius: 24px;
+      max-width: 420px;
+      margin: 60px auto 30px auto;
+      box-shadow: 0 0 24px #2ff6ff36;
+      padding: 2rem;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    #online-booking h2 {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 8px #0009;
+    }
+    #online-booking form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #online-booking input, #online-booking select {
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: #171c29;
+      color: #fff;
+      border: 1px solid #4fd3ff;
+      outline: none;
+      font-size: 1.1em;
+      box-shadow: 0 1px 8px #0011ff18 inset;
+      transition: border 0.2s;
+    }
+    #online-booking input:focus {
+      border-color: #8f00ff;
+    }
+    #online-booking button[type=submit] {
+      margin-top: 10px;
+      background: linear-gradient(90deg, #4fd3ff 30%, #8f00ff 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 12px 0;
+      font-size: 1.1em;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 20px #4fd3ff80;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    #online-booking button[type=submit]:hover {
+      background: linear-gradient(90deg, #8f00ff 30%, #4fd3ff 100%);
+    }
+    #online-booking .form-result {
+      text-align: center;
+      font-size: 1.05em;
+      color: #4fd3ff;
+      margin-top: 12px;
+      min-height: 32px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    #online-booking .note {
+      text-align: center;
+      font-size: 0.93em;
+      color: #fff8;
+      margin-top: 7px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#0B0E14] text-white">
+  <!-- Header -->
+  <header class="w-full flex items-center justify-between px-4 md:px-12 py-5 max-w-7xl mx-auto z-20">
+    <div class="flex items-center gap-3">
+      <img src="logo.svg" alt="VINh AUTOSERVICE" class="h-11 drop-shadow-[0_0_32px_#a300ff99]" />
+      <span class="font-extrabold text-2xl md:text-3xl tracking-tight select-none">VINh AUTOSERVICE</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <nav class="hidden md:flex gap-8 text-base font-medium">
+        <a href="#features" class="hover:text-cyan-400 transition">Фичи</a>
+        <a href="#media" class="hover:text-cyan-400 transition">Видео</a>
+        <a href="#booking" class="hover:text-cyan-400 transition">Запись</a>
+        <a href="#progress" class="hover:text-cyan-400 transition">Прогресс</a>
+        <a href="#diagnostics" class="hover:text-cyan-400 transition">Диагностика</a>
+        <a href="#pricing" class="hover:text-cyan-400 transition">Тарифы</a>
+        <a href="#docs" class="hover:text-cyan-400 transition">Документация</a>
+        <a href="https://github.com/JkTiGR/7kova_menu.git" target="_blank" class="hover:text-fuchsia-400 transition">GitHub</a>
+      </nav>
+      <a href="/login" class="ml-4 px-4 py-2 rounded-xl font-semibold text-white neon-btn text-sm hover:scale-105 transition">
+        🔐 Личный кабинет
+      </a>
+    </div>
+  </header>
+
+  <div class="blur-bg"></div>
+
+  <!-- Hero -->
+  <main class="flex flex-col items-center justify-center mt-20 md:mt-36 mb-16 px-3 w-full">
+    <h1 class="text-4xl md:text-7xl font-extrabold mb-7 text-center tracking-tight leading-tight drop-shadow-[0_2px_32px_#a300ff]">
+      VINh<br>
+      <span class="text-cyan-400">AUTOSERVICE</span>
+    </h1>
+    <p class="text-lg md:text-2xl mb-8 text-center text-white/80 max-w-2xl">
+      Обслуживание на уровне официального дилера по цене обычного сервиса<br>
+      <span class="text-cyan-400 font-bold">Диагностика, заказы, аналитика и AI</span> — всё на одном экране.
+    </p>
+    <div class="relative w-full max-w-3xl mx-auto rounded-3xl overflow-hidden border border-cyan-700 mockup-glow">
+      <img src="your-ui-mockup.png" alt="UI mockup" class="w-full rounded-3xl" style="background:#171c2a" />
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-16 bg-fuchsia-400 blur-2xl opacity-20 pointer-events-none"></div>
+    </div>
+  </main>
+
+  <!-- Video & 360° Panorama Section -->
+  <section id="media" class="w-full max-w-7xl mx-auto mt-16 mb-20 px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10 text-neon-cyan drop-shadow-[0_2px_32px_#0ff6]">
+      Погрузитесь в наш сервис
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="relative rounded-2xl overflow-hidden mockup-glow">
+        <iframe class="w-full h-64 md:h-96" src="https://www.youtube.com/embed/VIDEO_ID" title="VINh Autoservice Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden mockup-glow">
+        <iframe class="w-full h-64 md:h-96" src="https://lumalabs.ai/embed/PANORAMA_ID" title="360° Autoservice Panorama" frameborder="0" allow="xr-spatial-tracking; accelerometer; gyroscope"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <div class="w-full flex justify-center mb-10 px-2">
+    <div class="w-full max-w-lg">
+      <div class="flex flex-col gap-4">
+        <a href="https://maps.app.goo.gl/tLyvHSJ4TqdXnrib8" target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">📍</span> GOOGLE MAPS >
+        </a>
+        <a href="https://maps.apple.com/..." target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">📍</span> APPLE MAPS >
+        </a>
+        <a href="tel:+380730010298" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">📞</span> TELEPHONE
+        </a>
+        <a href="https://t.me/VINhservice" target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">✈️</span> TELEGRAM
+        </a>
+        <a href="viber://chat?number=380730010298" target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">💬</span> VIBER
+        </a>
+        <a href="https://instagram.com/..." target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">📷</span> INSTAGRAM
+        </a>
+        <a href="https://tiktok.com/..." target="_blank" class="w-full flex items-center gap-3 justify-center rounded-2xl px-3 py-4 font-bold text-lg shadow-lg transition neon-btn">
+          <span class="text-xl">🎵</span> TIKTOK
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Booking Section -->
+  <section id="booking" class="w-full max-w-7xl mx-auto mt-16 mb-20 px-4">
+    <div id="online-booking" class="py-5 px-2">
+      <h2>Записаться онлайн</h2>
+      <form id="bookingForm" autocomplete="on">
+        <input name="name" type="text" required placeholder="Имя" />
+        <input name="phone" type="tel" required placeholder="Телефон" />
+        <input name="car" type="text" required placeholder="Авто (марка, модель)" />
+        <input name="service" type="text" required placeholder="Услуга" />
+        <input name="date" type="date" required />
+        <input name="time" type="time" required />
+        <button type="submit">Записаться</button>
+        <div class="form-result" id="bookingResult"></div>
+      </form>
+      <div class="note">Мы перезвоним для подтверждения.</div>
+    </div>
+  </section>
+
+  <!-- Gamified Progress Section -->
+  <section id="progress" class="w-full max-w-7xl mx-auto mt-16 mb-20 px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10 text-neon-cyan drop-shadow-[0_2px_32px_#0ff6]">
+      Ваш прогресс с VINh
+    </h2>
+    <div class="bg-[#14171d]/70 rounded-2xl p-8 shadow-lg border border-cyan-800/30">
+      <div class="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
+        <div id="progress-bar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-fuchsia-400 transition-all duration-500" style="width: 60%"></div>
+      </div>
+      <div class="flex justify-between mt-4 text-sm text-white/70">
+        <span>🏅 Уровень 3: Профи</span>
+        <span>60% до следующего уровня</span>
+      </div>
+      <div class="mt-4 text-center">
+        <span class="text-neon-cyan font-bold">Достижения:</span> 5 обслуженных авто, 3 диагностики, 1 отзыв
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Counter Section -->
+  <section id="counter" class="w-full max-w-7xl mx-auto mt-16 mb-20 px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10 text-neon-cyan drop-shadow-[0_2px_32px_#0ff6]">
+      Мы обслужили
+    </h2>
+    <div class="text-center">
+      <span id="car-counter" class="text-5xl md:text-7xl font-extrabold text-neon-cyan drop-shadow-[0_2px_32px_#0ff6]">
+        0
+      </span>
+      <p class="text-xl text-white/70 mt-4">автомобилей и продолжаем!</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="w-full max-w-6xl mx-auto mt-10 mb-20 grid grid-cols-1 md:grid-cols-3 gap-10 px-4">
+    <div class="bg-[#14171d]/70 rounded-2xl p-8 flex flex-col items-center shadow-lg border border-cyan-800/30">
+      <svg width="48" height="48" fill="none" class="mb-4"><circle cx="24" cy="24" r="22" stroke="#0ff6" stroke-width="4"/><path d="M16 32h16M16 24h16M16 16h16" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <h3 class="font-bold text-xl mb-2 text-cyan-300">Планирование</h3>
+      <p class="text-white/70 text-center">Лёгкое расписание ремонтов, заказов и задач на любой день. Эффективно, как у топовых digital-команд.</p>
+    </div>
+    <div class="bg-[#14171d]/70 rounded-2xl p-8 flex flex-col items-center shadow-lg border border-cyan-800/30">
+      <svg width="48" height="48" fill="none" class="mb-4"><circle cx="24" cy="24" r="22" stroke="#a300ff" stroke-width="4"/><path d="M24 12v24M12 24h24" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <h3 class="font-bold text-xl mb-2 text-fuchsia-400">AI-Диагностика</h3>
+      <p class="text-white/70 text-center">Считывание кодов ошибок, автоматический подбор работ и запчастей, персональные рекомендации на базе AI.</p>
+    </div>
+    <div class="bg-[#14171d]/70 rounded-2xl p-8 flex flex-col items-center shadow-lg border border-cyan-800/30">
+      <svg width="48" height="48" fill="none" class="mb-4"><circle cx="24" cy="24" r="22" stroke="#41ffef" stroke-width="4"/><path d="M20 20h8v8h-8z" fill="#41ffef"/><path d="M20 20h8v8h-8z" stroke="#fff" stroke-width="2"/></svg>
+      <h3 class="font-bold text-xl mb-2 text-cyan-400">Аналитика</h3>
+      <p class="text-white/70 text-center">Вся статистика автосервиса: клиенты, посещаемость, топ-услуги — удобно, наглядно, современно.</p>
+    </div>
+  </section>
+
+  <!-- Diagnostics Packages Section -->
+  <section id="diagnostics" class="py-16 bg-gradient-to-br from-[#18192a] via-[#101019] to-[#1d2140]">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-center text-4xl md:text-5xl font-extrabold mb-12 text-white tracking-tight drop-shadow-[0_2px_32px_#0ff6]">
+        Пакеты диагностики перед покупкой
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#232533]/90 border border-cyan-500/40 rounded-3xl shadow-xl px-7 py-8 flex flex-col items-start relative hover:-translate-y-1 hover:shadow-cyan-500/30 transition-all">
+          <h3 class="text-2xl font-bold mb-4 text-white tracking-wide">Standart</h3>
+          <ul class="space-y-3 text-[1rem] text-white/90 mb-6">
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка наружного освещения</b><br><span class="text-white/70 text-sm">Проверка всех внешних ламп: ближний/дальний свет, поворотники, габариты, стоп-сигналы, противотуманные фары и т.д.</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка жидкостей</b><br><span class="text-white/70 text-sm">Визуальный осмотр: Масло, антифриз, тормозная жидкость, ГУР, стеклоомыватель</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Компьютерная диагностика</b><br><span class="text-white/70 text-sm">Считывание кодов ошибок, краткая расшифровка и рекомендации по устранению</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Диагностика ходовой части</b><br><span class="text-white/70 text-sm">Проверка амортизаторов, рычагов, сайлентблоков, стоек стабилизатора, шаровых, ступиц; оценка состояния тормозной системы</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка двигателя</b><br><span class="text-white/70 text-sm">Визуальный осмотр на наличие утечек (масло, антифриз), проверка приводных ремней, осмотр подушек двигателя</span></li>
+          </ul>
+          <div class="text-sm text-white/60 mb-2">Время диагностики: около <b>1 часа</b></div>
+          <div class="flex items-center justify-between w-full">
+            <div class="text-2xl font-bold text-white">799 грн</div>
+            <button class="ml-auto px-5 py-2 rounded-xl font-semibold bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-blue-600 text-white shadow-lg hover:shadow-cyan-400/40 hover:scale-110 transition-all duration-200 ring-2 ring-cyan-500/60 focus:outline-none">Выбрать</button>
+          </div>
+        </div>
+        <div class="bg-[#21243d]/90 border border-fuchsia-400/50 rounded-3xl shadow-xl px-7 py-8 flex flex-col items-start relative hover:-translate-y-1 hover:shadow-fuchsia-400/30 transition-all scale-105 z-10">
+          <h3 class="text-2xl font-bold mb-4 text-white tracking-wide">Plus</h3>
+          <ul class="space-y-3 text-[1rem] text-white/90 mb-6">
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка наружного освещения</b><br><span class="text-white/70 text-sm">Все внешние лампы: ближний/дальний свет, поворотники, габариты, стоп-сигналы, ПТФ и др.</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка уровней технических жидкостей</b><br><span class="text-white/70 text-sm">Масло, антифриз, тормозная жидкость (включая уровни и влажность), ГУР, стеклоомыватель</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Компьютерная диагностика</b><br><span class="text-white/70 text-sm">Считывание кодов ошибок, глубокая расшифровка и анализ, искусственный интеллект для оценки состояния систем (по накопленной базе статистики)</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Диагностика ходовой части</b><br><span class="text-white/70 text-sm">Проверка амортизаторов, рычагов, сайлентблоков, стоек стабилизатора, шаровых опор, ступиц; измерение остаточной толщины тормозных дисков и колодок</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка двигателя</b><br><span class="text-white/70 text-sm">Визуальный осмотр на наличие утечек, приводных ремней, подушек двигателя; считывание потоков данных (температура, топливные коррекции, обороты, детонация и др.)</span></li>
+          </ul>
+          <div class="text-sm text-white/60 mb-2">Время диагностики: около <b>1.5 часа</b></div>
+          <div class="flex items-center justify-between w-full">
+            <div class="text-2xl font-bold text-white">1499 грн</div>
+            <button class="ml-auto px-5 py-2 rounded-xl font-semibold bg-gradient-to-r from-fuchsia-400 via-cyan-400 to-blue-600 text-white shadow-lg hover:shadow-fuchsia-400/40 hover:scale-110 transition-all duration-200 ring-2 ring-fuchsia-400/60 focus:outline-none">Выбрать</button>
+          </div>
+        </div>
+        <div class="bg-[#1b2330]/90 border border-blue-400/60 rounded-3xl shadow-xl px-7 py-8 flex flex-col items-start relative hover:-translate-y-1 hover:shadow-blue-400/40 transition-all">
+          <h3 class="text-2xl font-bold mb-4 text-white tracking-wide">Premium</h3>
+          <ul class="space-y-3 text-[1rem] text-white/90 mb-6">
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка наружного освещения</b><br><span class="text-white/70 text-sm">Все внешние лампы: ближний/дальний свет, поворотники, габариты, стоп-сигналы, противотуманные фары и др.</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка уровней технических жидкостей</b><br><span class="text-white/70 text-sm">Масло, ГУР, стеклоомыватель; качество антифриза (консистенция, температура замерзания), тормозная жидкость (уровень и влажность)</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Компьютерная диагностика</b><br><span class="text-white/70 text-sm">Считывание всех доступных кодов, глубокая расшифровка и анализ, ИИ для оценки состояния (на основе базы неисправностей)</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Диагностика ходовой части</b><br><span class="text-white/70 text-sm">Проверка амортизаторов, рычагов, сайлентблоков, шаровых опор, втулок и стоек стабилизатора, ступиц и пр.; измерение остаточной толщины тормозных дисков и колодок</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка двигателя</b><br><span class="text-white/70 text-sm">Визуальный осмотр на наличие утечек масла и охлаждающей жидкости; приводные ремни, подушки двигателя; потоки данных (температура, коррекции, обороты, давление, датчики и др.); эндоскопия цилиндров, замер компрессии</span></li>
+            <li><span class="text-neon-cyan">✔</span> <b>Проверка кузова и геометрии</b><br><span class="text-white/70 text-sm">Измерение толщины ЛКП (при наличии толщиномера); признаки и следы ДТП: вмятины, перекрасы, сварка; проверка геометрии, зазоров, сварных соединений</span></li>
+          </ul>
+          <div class="text-sm text-white/60 mb-2">Время диагностики: около <b>3 часов</b></div>
+          <div class="flex items-center justify-between w-full">
+            <div class="text-2xl font-bold text-white">1999 грн</div>
+            <button class="ml-auto px-5 py-2 rounded-xl font-semibold bg-gradient-to-r from-blue-400 via-fuchsia-400 to-cyan-600 text-white shadow-lg hover:shadow-blue-400/40 hover:scale-110 transition-all duration-200 ring-2 ring-blue-400/60 focus:outline-none">Выбрать</button>
+          </div>
+        </div>
+      </div>
+      <p class="mt-8 text-center text-white/50 text-sm">*Для подробной консультации — свяжитесь с нашим менеджером.</p>
+    </div>
+  </section>
+
+  <!-- Chatbot Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="chatbot-button" class="w-16 h-16 rounded-full neon-btn flex items-center justify-center shadow-lg hover:scale-110 transition-all" aria-label="Открыть чат-бот">
+      <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 0 0 1 8v.5z" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-white/50 py-10 mt-auto border-t border-white/10 text-sm">
+    <span class="font-semibold">VINh AUTOSERVICE</span> © 2025 | Designed with ❤️ | Inspired by Huly, Linear, Vercel.
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Form Submission
+    const FORM_ENDPOINT = "https://formspree.io/f/your-form-id"; // Replace with your Formspree ID
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const resultDiv = document.getElementById('bookingResult');
+      resultDiv.textContent = '';
+      const formData = new FormData(this);
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          resultDiv.textContent = "Спасибо за запись! Мы свяжемся с вами.";
+          this.reset();
+        } else {
+          resultDiv.textContent = "Ошибка отправки! Позвоните нам, пожалуйста.";
+        }
+      } catch (err) {
+        resultDiv.textContent = "Ошибка соединения! Позвоните нам, пожалуйста.";
+      }
+    });
+
+    // Chatbot Button
+    document.getElementById('chatbot-button').addEventListener('click', () => {
+      alert("Чат-бот откроется здесь! Интеграция с вашим провайдером чат-бота.");
+    });
+
+    // Progress Bar Animation
+    window.addEventListener("load", () => {
+      const progressBar = document.getElementById("progress-bar");
+      progressBar.style.width = "0%";
+      setTimeout(() => {
+        progressBar.style.width = "60%"; // Replace with dynamic value
+      }, 500);
+    });
+
+    // Animate Counter
+    function animateCounter(id, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        document.getElementById(id).textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Start Counter on Scroll
+    const counterSection = document.getElementById("counter");
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        animateCounter("car-counter", 0, 1298, 2000); // Replace 1250 with actual number
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+    observer.observe(counterSection);
+  </script>
+</body>
+</html>
